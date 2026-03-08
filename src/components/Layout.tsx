@@ -35,14 +35,21 @@ const wallpapers: Record<ThemeName, string> = {
   superbike: wallpaperSuperbike,
   supercar: wallpaperSupercar,
 };
+const pathLabels: Record<string, string> = {
+  "/timer": "Study Timer",
+  "/notes": "Notes",
+  "/quiz": "Quiz",
+  "/focus": "Focus Mode",
+  "/study-plan": "AI Planner",
+};
 
 const Layout = () => {
   const { theme } = useTheme();
   const { open, setOpen } = useSidebarMobile();
   const { layoutMode } = useLayoutMode();
-  const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const currentLabel = pathLabels[location.pathname];
 
   const layoutClasses = {
     laptop: "",
