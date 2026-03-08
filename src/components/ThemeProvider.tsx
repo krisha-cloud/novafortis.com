@@ -26,6 +26,10 @@ export const themes: Array<{
   { id: "thunder", label: "Thunder", emoji: "⚡", colors: ["#0c0a18", "#f5c518", "#aa00ff"] },
   { id: "rain", label: "Rain", emoji: "🌧️", colors: ["#0f1925", "#3da8e0", "#5b6abf"] },
   { id: "ocean", label: "Ocean", emoji: "🌊", colors: ["#0a1a1f", "#15b8a6", "#3b82f6"] },
+  { id: "sunset", label: "Sunset", emoji: "🌅", colors: ["#1a0f0a", "#e8652b", "#d4a017"] },
+  { id: "forest", label: "Forest", emoji: "🌿", colors: ["#0a1a0f", "#2d8a4e", "#8b6914"] },
+  { id: "neon", label: "Neon", emoji: "💜", colors: ["#0a0a12", "#ff2d95", "#00e5ff"] },
+  { id: "midnight", label: "Midnight", emoji: "🔮", colors: ["#0d0520", "#9333ea", "#d946ef"] },
 ];
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
