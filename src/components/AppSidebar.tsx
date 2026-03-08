@@ -1,6 +1,8 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { Timer, BookOpen, Brain, Shield, Sparkles, LayoutDashboard, Zap } from "lucide-react";
-import { motion } from "framer-motion";
+import { Timer, BookOpen, Brain, Shield, Sparkles, LayoutDashboard, Zap, Palette, Check } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { useTheme, themes } from "./ThemeProvider";
 
 const navItems = [
   { to: "/", icon: LayoutDashboard, label: "Dashboard" },
@@ -13,6 +15,8 @@ const navItems = [
 
 const AppSidebar = () => {
   const location = useLocation();
+  const { theme, setTheme } = useTheme();
+  const [themesOpen, setThemesOpen] = useState(false);
 
   return (
     <aside className="fixed left-0 top-0 h-full w-[270px] z-50 flex flex-col bg-card/30 backdrop-blur-3xl border-r border-border/30">
@@ -40,7 +44,7 @@ const AppSidebar = () => {
       <div className="mx-5 my-3 h-[1px] bg-gradient-to-r from-border/60 via-border/20 to-transparent" />
 
       {/* Nav */}
-      <nav className="flex-1 px-4 space-y-1 mt-1">
+      <nav className="flex-1 px-4 space-y-1 mt-1 overflow-y-auto">
         <p className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground/60 font-semibold px-3 mb-3">Navigation</p>
         {navItems.map((item) => {
           const isActive = location.pathname === item.to;
@@ -78,6 +82,80 @@ const AppSidebar = () => {
             </NavLink>
           );
         })}
+
+        {/* Themes section */}
+        <div className="mt-4 pt-3">
+          <div className="mx-5 mb-3 h-[1px] bg-gradient-to-r from-border/60 via-border/20 to-transparent" />
+          <button
+            onClick={() => setThemesOpen(!themesOpen)}
+            className="flex items-center gap-3.5 px-4 py-3 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 w-full relative overflow-hidden group"
+          >
+            <div className="absolute inset-0 rounded-xl bg-transparent group-hover:bg-secondary/30 transition-colors duration-300" />
+            <Palette className="w-[18px] h-[18px] relative z-10" />
+            <span className="relative z-10 flex-1 text-left">Themes</span>
+            <motion.div
+              animate={{ rotate: themesOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative z-10"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </motion.div>
+          </button>
+
+          <AnimatePresence>
+            {themesOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="overflow-hidden"
+              >
+                <div className="px-2 py-2 space-y-1">
+                  {themes.map((t) => {
+                    const isActive = theme === t.id;
+                    return (
+                      <motion.button
+                        key={t.id}
+                        whileHover={{ x: 4 }}
+                        whileTap={{ scale: 0.97 }}
+                        onClick={() => setTheme(t.id)}
+                        className={`flex items-center gap-3 w-full px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
+                          isActive
+                            ? "bg-primary/10 text-primary border border-primary/20"
+                            : "text-muted-foreground hover:text-foreground hover:bg-secondary/30"
+                        }`}
+                      >
+                        {/* Color preview dots */}
+                        <div className="flex -space-x-1">
+                          {t.colors.map((color, i) => (
+                            <div
+                              key={i}
+                              className="w-3.5 h-3.5 rounded-full border border-border/50"
+                              style={{ backgroundColor: color, zIndex: 3 - i }}
+                            />
+                          ))}
+                        </div>
+                        <span className="flex-1 text-left">{t.emoji} {t.label}</span>
+                        {isActive && (
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="w-5 h-5 rounded-full bg-primary flex items-center justify-center"
+                          >
+                            <Check className="w-3 h-3 text-primary-foreground" />
+                          </motion.div>
+                        )}
+                      </motion.button>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </nav>
 
       {/* Bottom card */}

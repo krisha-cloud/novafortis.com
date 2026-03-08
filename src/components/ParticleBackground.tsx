@@ -15,12 +15,21 @@ const ParticleBackground = () => {
       size: number; opacity: number; hue: number;
     }> = [];
 
+    const getThemeHues = (): [number, number] => {
+      const style = getComputedStyle(document.documentElement);
+      const h1 = parseInt(style.getPropertyValue("--theme-particle-1").trim()) || 160;
+      const h2 = parseInt(style.getPropertyValue("--theme-particle-2").trim()) || 270;
+      return [h1, h2];
+    };
+
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
     resize();
     window.addEventListener("resize", resize);
+
+    const [hue1, hue2] = getThemeHues();
 
     for (let i = 0; i < 60; i++) {
       particles.push({
@@ -30,12 +39,23 @@ const ParticleBackground = () => {
         vy: (Math.random() - 0.5) * 0.3,
         size: Math.random() * 2 + 0.5,
         opacity: Math.random() * 0.3 + 0.05,
-        hue: Math.random() > 0.5 ? 160 : 270,
+        hue: Math.random() > 0.5 ? hue1 : hue2,
       });
     }
 
+    let frameCount = 0;
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Re-read hues every ~120 frames to react to theme changes
+      if (frameCount % 120 === 0) {
+        const [h1, h2] = getThemeHues();
+        particles.forEach((p) => {
+          p.hue = Math.random() > 0.5 ? h1 : h2;
+        });
+      }
+      frameCount++;
 
       particles.forEach((p, i) => {
         p.x += p.vx;
@@ -51,7 +71,6 @@ const ParticleBackground = () => {
         ctx.fillStyle = `hsla(${p.hue}, 80%, 60%, ${p.opacity})`;
         ctx.fill();
 
-        // Draw connections
         for (let j = i + 1; j < particles.length; j++) {
           const dx = p.x - particles[j].x;
           const dy = p.y - particles[j].y;
