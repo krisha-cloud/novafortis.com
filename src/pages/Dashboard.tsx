@@ -64,7 +64,7 @@ const Dashboard = () => {
           <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground/60 font-semibold mb-4">Tools</p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {features.map((f, i) => (
+          {features.map((f) => (
             <motion.div key={f.to} variants={item}>
               <Link
                 to={f.to}
