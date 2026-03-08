@@ -39,6 +39,9 @@ const Layout = () => {
   const { theme } = useTheme();
   const { open, setOpen } = useSidebarMobile();
   const { layoutMode } = useLayoutMode();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   const layoutClasses = {
     laptop: "",
