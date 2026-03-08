@@ -4,6 +4,7 @@ import AppSidebar from "./AppSidebar";
 import ParticleBackground from "./ParticleBackground";
 import { useTheme, type ThemeName } from "./ThemeProvider";
 import { useSidebarMobile } from "./SidebarMobileProvider";
+import { useLayoutMode } from "./LayoutModeProvider";
 import { Menu } from "lucide-react";
 
 import wallpaperDark from "@/assets/wallpaper-dark.jpg";
