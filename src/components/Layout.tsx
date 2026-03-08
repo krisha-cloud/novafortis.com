@@ -27,7 +27,7 @@ const Layout = () => {
   const { open, setOpen } = useSidebarMobile();
 
   return (
-    <div className="min-h-screen bg-background noise relative overflow-hidden">
+    <div className="min-h-screen noise relative overflow-hidden">
       {/* Theme wallpaper */}
       <AnimatePresence mode="wait">
         <motion.div
