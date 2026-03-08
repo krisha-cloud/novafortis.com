@@ -1,11 +1,11 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import AppSidebar from "./AppSidebar";
 import ParticleBackground from "./ParticleBackground";
 import { useTheme, type ThemeName } from "./ThemeProvider";
 import { useSidebarMobile } from "./SidebarMobileProvider";
 import { useLayoutMode } from "./LayoutModeProvider";
-import { Menu } from "lucide-react";
+import { Menu, ArrowLeft } from "lucide-react";
 
 import wallpaperDark from "@/assets/wallpaper-dark.jpg";
 import wallpaperLight from "@/assets/wallpaper-light.jpg";
