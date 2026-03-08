@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Plus, Play, CheckCircle2, XCircle, ArrowRight, Brain, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import PerformanceModal from "@/components/PerformanceModal";
 
 interface Question {
   id: string;
