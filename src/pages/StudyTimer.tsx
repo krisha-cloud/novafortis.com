@@ -28,7 +28,10 @@ const StudyTimer = () => {
       setSeconds((s) => {
         if (s <= 1) {
           setRunning(false);
-          if (modeIndex === 0) setSessions((p) => p + 1);
+          if (modeIndex === 0) {
+            setSessions((p) => p + 1);
+            setShowPerformance(true);
+          }
           return 0;
         }
         return s - 1;
