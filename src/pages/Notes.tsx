@@ -61,7 +61,7 @@ const Notes = () => {
       className="flex flex-col lg:flex-row gap-4 lg:gap-6 h-auto lg:h-[calc(100vh-5rem)]"
     >
       {/* Sidebar */}
-      <div className="w-80 flex flex-col">
+      <div className="w-full lg:w-80 flex flex-col">
         <div className="flex items-center gap-3 mb-5">
           <h1 className="text-2xl font-display font-extrabold flex-1">Notes</h1>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
