@@ -26,6 +26,7 @@ const Quiz = () => {
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
+  const [showPerformance, setShowPerformance] = useState(false);
 
   const [newTitle, setNewTitle] = useState("");
   const [newQuestions, setNewQuestions] = useState<Question[]>([]);
