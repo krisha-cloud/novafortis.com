@@ -89,6 +89,13 @@ const Quiz = () => {
     const pct = Math.round((score / activeQuiz.questions.length) * 100);
     return (
       <div className="max-w-xl mx-auto text-center">
+        <PerformanceModal
+          open={showPerformance}
+          onClose={() => setShowPerformance(false)}
+          type="quiz"
+          score={score}
+          totalQuestions={activeQuiz.questions.length}
+        />
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}

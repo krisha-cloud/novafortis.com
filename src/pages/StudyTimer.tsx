@@ -167,6 +167,14 @@ const StudyTimer = () => {
           {sessions > 0 && <span className="text-xs">🔥</span>}
         </div>
       </motion.div>
+
+      <PerformanceModal
+        open={showPerformance}
+        onClose={() => setShowPerformance(false)}
+        type="timer"
+        sessionsCompleted={sessions}
+        totalMinutes={sessions * MODES[0].minutes}
+      />
     </div>
   );
 };
