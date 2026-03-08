@@ -21,7 +21,8 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
       <SidebarMobileProvider>
-        <TooltipProvider>
+        <LayoutModeProvider>
+          <TooltipProvider>
           <Toaster />
           <Sonner />
           <BrowserRouter>
