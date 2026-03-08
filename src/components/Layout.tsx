@@ -13,6 +13,10 @@ import wallpaperPastel from "@/assets/wallpaper-pastel.jpg";
 import wallpaperThunder from "@/assets/wallpaper-thunder.jpg";
 import wallpaperRain from "@/assets/wallpaper-rain.jpg";
 import wallpaperOcean from "@/assets/wallpaper-ocean.jpg";
+import wallpaperSunset from "@/assets/wallpaper-sunset.jpg";
+import wallpaperForest from "@/assets/wallpaper-forest.jpg";
+import wallpaperNeon from "@/assets/wallpaper-neon.jpg";
+import wallpaperMidnight from "@/assets/wallpaper-midnight.jpg";
 
 const wallpapers: Record<ThemeName, string> = {
   dark: wallpaperDark,
@@ -21,6 +25,10 @@ const wallpapers: Record<ThemeName, string> = {
   thunder: wallpaperThunder,
   rain: wallpaperRain,
   ocean: wallpaperOcean,
+  sunset: wallpaperSunset,
+  forest: wallpaperForest,
+  neon: wallpaperNeon,
+  midnight: wallpaperMidnight,
 };
 
 const Layout = () => {
