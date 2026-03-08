@@ -39,11 +39,11 @@ const Layout = () => {
             src={wallpapers[theme]}
             alt=""
             className="w-full h-full object-cover"
-            style={{ opacity: 0.15 }}
+            style={{ opacity: 0.45 }}
           />
           {/* Overlay to blend wallpaper with background color */}
           <div
-            className="absolute inset-0 bg-background/70"
+            className="absolute inset-0 bg-background/50"
           />
         </motion.div>
       </AnimatePresence>
