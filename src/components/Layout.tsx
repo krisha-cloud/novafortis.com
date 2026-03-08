@@ -80,7 +80,7 @@ const Layout = () => {
         >
           <Menu className="w-5 h-5" />
         </button>
-        <h1 className="ml-3 text-lg font-display font-bold text-gradient">StudyNova</h1>
+        <h1 className="ml-3 text-lg font-display font-bold text-gradient">Nova Fortis</h1>
       </div>
 
       <main className="lg:ml-[270px] p-4 pt-18 lg:p-10 lg:pt-10 min-h-screen relative z-10">

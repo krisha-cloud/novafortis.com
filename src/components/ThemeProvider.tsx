@@ -30,13 +30,13 @@ export const themes: Array<{
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setThemeState] = useState<ThemeName>(() => {
-    const stored = localStorage.getItem("studynova-theme");
+    const stored = localStorage.getItem("novafortis-theme");
     return (stored as ThemeName) || "dark";
   });
 
   const setTheme = (t: ThemeName) => {
     setThemeState(t);
-    localStorage.setItem("studynova-theme", t);
+    localStorage.setItem("novafortis-theme", t);
   };
 
   useEffect(() => {
