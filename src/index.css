@@ -427,6 +427,90 @@
     --theme-particle-1: 270;
     --theme-particle-2: 310;
   }
+
+  /* ===== SUPERBIKE ===== */
+  [data-theme="superbike"] {
+    --background: 0 40% 5%;
+    --foreground: 0 15% 92%;
+    --card: 0 35% 8%;
+    --card-foreground: 0 15% 92%;
+    --popover: 0 35% 8%;
+    --popover-foreground: 0 15% 92%;
+    --primary: 0 72% 51%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 25% 13%;
+    --secondary-foreground: 0 15% 80%;
+    --muted: 0 20% 12%;
+    --muted-foreground: 0 12% 50%;
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 40% 5%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 20% 15%;
+    --input: 0 20% 15%;
+    --ring: 0 72% 51%;
+    --sidebar-background: 0 35% 6%;
+    --sidebar-foreground: 0 15% 68%;
+    --sidebar-primary: 0 72% 51%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 20% 12%;
+    --sidebar-accent-foreground: 0 15% 68%;
+    --sidebar-border: 0 20% 15%;
+    --sidebar-ring: 0 72% 51%;
+    --warning: 25 95% 53%;
+    --warning-foreground: 0 40% 5%;
+    --success: 160 60% 42%;
+    --success-foreground: 0 40% 5%;
+    --cyan: 25 95% 53%;
+    --pink: 0 72% 51%;
+    --theme-glow-1: 0 72% 51%;
+    --theme-glow-2: 25 95% 53%;
+    --theme-glow-3: 350 80% 45%;
+    --theme-particle-1: 0;
+    --theme-particle-2: 25;
+  }
+
+  /* ===== SUPERCAR ===== */
+  [data-theme="supercar"] {
+    --background: 45 40% 4%;
+    --foreground: 45 15% 92%;
+    --card: 45 30% 8%;
+    --card-foreground: 45 15% 92%;
+    --popover: 45 30% 8%;
+    --popover-foreground: 45 15% 92%;
+    --primary: 48 96% 53%;
+    --primary-foreground: 45 40% 4%;
+    --secondary: 45 20% 13%;
+    --secondary-foreground: 45 15% 80%;
+    --muted: 45 18% 12%;
+    --muted-foreground: 45 12% 50%;
+    --accent: 38 92% 50%;
+    --accent-foreground: 45 40% 4%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 45 15% 98%;
+    --border: 45 18% 15%;
+    --input: 45 18% 15%;
+    --ring: 48 96% 53%;
+    --sidebar-background: 45 30% 6%;
+    --sidebar-foreground: 45 15% 68%;
+    --sidebar-primary: 48 96% 53%;
+    --sidebar-primary-foreground: 45 40% 4%;
+    --sidebar-accent: 45 18% 12%;
+    --sidebar-accent-foreground: 45 15% 68%;
+    --sidebar-border: 45 18% 15%;
+    --sidebar-ring: 48 96% 53%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 45 40% 4%;
+    --success: 160 60% 42%;
+    --success-foreground: 45 40% 4%;
+    --cyan: 48 96% 53%;
+    --pink: 38 92% 50%;
+    --theme-glow-1: 48 96% 53%;
+    --theme-glow-2: 38 92% 50%;
+    --theme-glow-3: 30 80% 45%;
+    --theme-particle-1: 48;
+    --theme-particle-2: 38;
+  }
 }
 
 @layer base {

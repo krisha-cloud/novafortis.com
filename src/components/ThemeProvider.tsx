@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
-export type ThemeName = "dark" | "light" | "pastel" | "thunder" | "rain" | "ocean" | "sunset" | "forest" | "neon" | "midnight";
+export type ThemeName = "dark" | "light" | "pastel" | "thunder" | "rain" | "ocean" | "sunset" | "forest" | "neon" | "midnight" | "superbike" | "supercar";
 
 interface ThemeContextType {
   theme: ThemeName;
@@ -30,6 +30,8 @@ export const themes: Array<{
   { id: "forest", label: "Forest", emoji: "🌿", colors: ["#0a1a0f", "#2d8a4e", "#8b6914"] },
   { id: "neon", label: "Neon", emoji: "💜", colors: ["#0a0a12", "#ff2d95", "#00e5ff"] },
   { id: "midnight", label: "Midnight", emoji: "🔮", colors: ["#0d0520", "#9333ea", "#d946ef"] },
+  { id: "superbike", label: "Superbike", emoji: "🏍️", colors: ["#1a0808", "#dc2626", "#f97316"] },
+  { id: "supercar", label: "Supercar", emoji: "🏎️", colors: ["#1a1400", "#eab308", "#f59e0b"] },
 ];
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
