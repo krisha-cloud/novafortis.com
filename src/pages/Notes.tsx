@@ -85,7 +85,7 @@ const Notes = () => {
           />
         </div>
 
-        <div className="flex-1 overflow-y-auto space-y-2 pr-1">
+        <div className="flex-1 overflow-y-auto space-y-2 pr-1 max-h-[40vh] lg:max-h-none">
           <AnimatePresence>
             {filtered.map((note) => (
               <motion.div

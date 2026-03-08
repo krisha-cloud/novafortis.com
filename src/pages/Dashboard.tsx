@@ -45,7 +45,7 @@ const Dashboard = () => {
         </motion.div>
 
         {/* Stats */}
-        <motion.div variants={item} className="grid grid-cols-3 gap-4 mb-10">
+        <motion.div variants={item} className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-10">
           {stats.map((s) => (
             <div key={s.label} className="glass-card p-5 flex items-center gap-4">
               <div className="w-11 h-11 rounded-xl bg-secondary/80 flex items-center justify-center">
