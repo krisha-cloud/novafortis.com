@@ -42,7 +42,7 @@ const Layout = () => {
             src={wallpapers[theme]}
             alt=""
             className="w-full h-full object-cover"
-            style={{ opacity: 0.75 }}
+            style={{ opacity: 0.85 }}
           />
           <div className="absolute inset-0 bg-background/30" />
         </motion.div>
