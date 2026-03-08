@@ -58,10 +58,10 @@ const Notes = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex gap-6 h-[calc(100vh-5rem)]"
+      className="flex flex-col lg:flex-row gap-4 lg:gap-6 h-auto lg:h-[calc(100vh-5rem)]"
     >
       {/* Sidebar */}
-      <div className="w-80 flex flex-col">
+      <div className="w-full lg:w-80 flex flex-col">
         <div className="flex items-center gap-3 mb-5">
           <h1 className="text-2xl font-display font-extrabold flex-1">Notes</h1>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -85,7 +85,7 @@ const Notes = () => {
           />
         </div>
 
-        <div className="flex-1 overflow-y-auto space-y-2 pr-1">
+        <div className="flex-1 overflow-y-auto space-y-2 pr-1 max-h-[40vh] lg:max-h-none">
           <AnimatePresence>
             {filtered.map((note) => (
               <motion.div

@@ -35,7 +35,7 @@ const Dashboard = () => {
             <div className="w-1.5 h-1.5 rounded-full bg-primary pulse-glow" />
             Ready to study
           </div>
-          <h1 className="text-5xl font-display font-extrabold mb-3 leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold mb-3 leading-tight">
             Welcome to <br />
             <span className="text-gradient">StudyNova</span>
           </h1>
@@ -45,7 +45,7 @@ const Dashboard = () => {
         </motion.div>
 
         {/* Stats */}
-        <motion.div variants={item} className="grid grid-cols-3 gap-4 mb-10">
+        <motion.div variants={item} className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-10">
           {stats.map((s) => (
             <div key={s.label} className="glass-card p-5 flex items-center gap-4">
               <div className="w-11 h-11 rounded-xl bg-secondary/80 flex items-center justify-center">
