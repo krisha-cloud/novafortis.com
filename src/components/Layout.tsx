@@ -26,7 +26,13 @@ const wallpapers: Record<ThemeName, string> = {
 const Layout = () => {
   const { theme } = useTheme();
   const { open, setOpen } = useSidebarMobile();
+  const { layoutMode } = useLayoutMode();
 
+  const layoutClasses = {
+    laptop: "",
+    tablet: "max-w-[834px] mx-auto",
+    phone: "max-w-[390px] mx-auto",
+  };
   return (
     <div className="min-h-screen noise relative overflow-hidden">
       {/* Theme wallpaper */}
