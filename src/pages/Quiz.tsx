@@ -77,6 +77,7 @@ const Quiz = () => {
     if (!activeQuiz) return;
     if (currentQ + 1 >= activeQuiz.questions.length) {
       setFinished(true);
+      setShowPerformance(true);
     } else {
       setCurrentQ((c) => c + 1);
       setSelected(null);
