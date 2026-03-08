@@ -58,7 +58,7 @@ const Notes = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex gap-6 h-[calc(100vh-5rem)]"
+      className="flex flex-col lg:flex-row gap-4 lg:gap-6 h-auto lg:h-[calc(100vh-5rem)]"
     >
       {/* Sidebar */}
       <div className="w-80 flex flex-col">
