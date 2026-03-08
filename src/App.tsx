@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { SidebarMobileProvider } from "./components/SidebarMobileProvider";
+import { LayoutModeProvider } from "./components/LayoutModeProvider";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import StudyTimer from "./pages/StudyTimer";
