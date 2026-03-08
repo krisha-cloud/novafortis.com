@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Timer, BookOpen, Brain, Shield, Sparkles, ArrowRight, TrendingUp, Flame, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useOnboarding } from "@/components/OnboardingProvider";
 
 const features = [
   { to: "/timer", icon: Timer, title: "Study Timer", desc: "Pomodoro focus sessions with visual tracking", gradient: "from-primary/20 to-primary/5", iconColor: "text-primary", borderHover: "hover:border-primary/30" },
@@ -26,6 +27,9 @@ const item = {
 };
 
 const Dashboard = () => {
+  const { userInfo } = useOnboarding();
+  const firstName = userInfo?.name?.split(" ")[0] || "Student";
+
   return (
     <div className="max-w-6xl">
       <motion.div variants={container} initial="hidden" animate="show">
@@ -36,9 +40,12 @@ const Dashboard = () => {
             Ready to study
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold mb-3 leading-tight">
-            Welcome to <br />
-            <span className="text-gradient">StudyNova</span>
+            Hey {firstName}! 👋 <br />
+            <span className="text-gradient">Let's Study</span>
           </h1>
+          <p className="text-muted-foreground text-lg max-w-lg">
+            Your all-in-one study companion. Pick a tool below to get started.
+          </p>
           <p className="text-muted-foreground text-lg max-w-lg">
             Your all-in-one study companion. Pick a tool below to get started.
           </p>
