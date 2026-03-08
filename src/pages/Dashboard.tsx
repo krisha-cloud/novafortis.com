@@ -35,7 +35,7 @@ const Dashboard = () => {
             <div className="w-1.5 h-1.5 rounded-full bg-primary pulse-glow" />
             Ready to study
           </div>
-          <h1 className="text-5xl font-display font-extrabold mb-3 leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold mb-3 leading-tight">
             Welcome to <br />
             <span className="text-gradient">StudyNova</span>
           </h1>
