@@ -3,6 +3,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import AppSidebar from "./AppSidebar";
 import ParticleBackground from "./ParticleBackground";
 import { useTheme, type ThemeName } from "./ThemeProvider";
+import { useSidebarMobile } from "./SidebarMobileProvider";
+import { Menu } from "lucide-react";
 
 import wallpaperDark from "@/assets/wallpaper-dark.jpg";
 import wallpaperLight from "@/assets/wallpaper-light.jpg";
@@ -22,6 +24,7 @@ const wallpapers: Record<ThemeName, string> = {
 
 const Layout = () => {
   const { theme } = useTheme();
+  const { open, setOpen } = useSidebarMobile();
 
   return (
     <div className="min-h-screen bg-background noise relative overflow-hidden">
@@ -41,16 +44,39 @@ const Layout = () => {
             className="w-full h-full object-cover"
             style={{ opacity: 0.45 }}
           />
-          {/* Overlay to blend wallpaper with background color */}
-          <div
-            className="absolute inset-0 bg-background/50"
-          />
+          <div className="absolute inset-0 bg-background/50" />
         </motion.div>
       </AnimatePresence>
 
       <ParticleBackground />
+
+      {/* Mobile overlay backdrop */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+            onClick={() => setOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
       <AppSidebar />
-      <main className="ml-[270px] p-10 min-h-screen relative z-10">
+
+      {/* Mobile header */}
+      <div className="fixed top-0 left-0 right-0 h-14 z-30 flex items-center px-4 bg-background/60 backdrop-blur-xl border-b border-border/20 lg:hidden">
+        <button
+          onClick={() => setOpen(true)}
+          className="w-10 h-10 rounded-xl flex items-center justify-center bg-secondary/50 text-foreground"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+        <h1 className="ml-3 text-lg font-display font-bold text-gradient">StudyNova</h1>
+      </div>
+
+      <main className="lg:ml-[270px] p-4 pt-18 lg:p-10 lg:pt-10 min-h-screen relative z-10">
         <Outlet />
       </main>
     </div>
