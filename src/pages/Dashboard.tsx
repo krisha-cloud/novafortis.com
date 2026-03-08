@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Timer, BookOpen, Brain, Shield, Sparkles, ArrowRight, TrendingUp, Flame, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useOnboarding } from "@/components/OnboardingProvider";
-import { Link } from "react-router-dom";
 
 const features = [
   { to: "/timer", icon: Timer, title: "Study Timer", desc: "Pomodoro focus sessions with visual tracking", gradient: "from-primary/20 to-primary/5", iconColor: "text-primary", borderHover: "hover:border-primary/30" },
