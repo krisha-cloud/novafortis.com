@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Pause, RotateCcw, Coffee, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import PerformanceModal from "@/components/PerformanceModal";
 
 const MODES = [
   { label: "Focus", minutes: 25 },
@@ -14,6 +15,7 @@ const StudyTimer = () => {
   const [seconds, setSeconds] = useState(MODES[0].minutes * 60);
   const [running, setRunning] = useState(false);
   const [sessions, setSessions] = useState(0);
+  const [showPerformance, setShowPerformance] = useState(false);
 
   const mode = MODES[modeIndex];
   const total = mode.minutes * 60;
@@ -26,7 +28,10 @@ const StudyTimer = () => {
       setSeconds((s) => {
         if (s <= 1) {
           setRunning(false);
-          if (modeIndex === 0) setSessions((p) => p + 1);
+          if (modeIndex === 0) {
+            setSessions((p) => p + 1);
+            setShowPerformance(true);
+          }
           return 0;
         }
         return s - 1;
@@ -162,6 +167,14 @@ const StudyTimer = () => {
           {sessions > 0 && <span className="text-xs">🔥</span>}
         </div>
       </motion.div>
+
+      <PerformanceModal
+        open={showPerformance}
+        onClose={() => setShowPerformance(false)}
+        type="timer"
+        sessionsCompleted={sessions}
+        totalMinutes={sessions * MODES[0].minutes}
+      />
     </div>
   );
 };

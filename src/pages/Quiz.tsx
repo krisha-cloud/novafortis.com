@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Plus, Play, CheckCircle2, XCircle, ArrowRight, Brain, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import PerformanceModal from "@/components/PerformanceModal";
 
 interface Question {
   id: string;
@@ -25,6 +26,7 @@ const Quiz = () => {
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
+  const [showPerformance, setShowPerformance] = useState(false);
 
   const [newTitle, setNewTitle] = useState("");
   const [newQuestions, setNewQuestions] = useState<Question[]>([]);
@@ -75,6 +77,7 @@ const Quiz = () => {
     if (!activeQuiz) return;
     if (currentQ + 1 >= activeQuiz.questions.length) {
       setFinished(true);
+      setShowPerformance(true);
     } else {
       setCurrentQ((c) => c + 1);
       setSelected(null);
@@ -86,6 +89,13 @@ const Quiz = () => {
     const pct = Math.round((score / activeQuiz.questions.length) * 100);
     return (
       <div className="max-w-xl mx-auto text-center">
+        <PerformanceModal
+          open={showPerformance}
+          onClose={() => setShowPerformance(false)}
+          type="quiz"
+          score={score}
+          totalQuestions={activeQuiz.questions.length}
+        />
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
