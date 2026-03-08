@@ -1,9 +1,43 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { Timer, BookOpen, Brain, Shield, Sparkles, LayoutDashboard, Zap, Palette, Check, X } from "lucide-react";
+import { Timer, BookOpen, Brain, Shield, Sparkles, LayoutDashboard, Zap, Palette, Check, X, Monitor, Tablet, Smartphone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useTheme, themes } from "./ThemeProvider";
 import { useSidebarMobile } from "./SidebarMobileProvider";
+import { useLayoutMode, type LayoutMode } from "./LayoutModeProvider";
+
+const layoutModes: Array<{ id: LayoutMode; label: string; icon: typeof Monitor }> = [
+  { id: "laptop", label: "Laptop", icon: Monitor },
+  { id: "tablet", label: "iPad", icon: Tablet },
+  { id: "phone", label: "Phone", icon: Smartphone },
+];
+
+const LayoutToggle = () => {
+  const { layoutMode, setLayoutMode } = useLayoutMode();
+  return (
+    <div className="px-2 flex gap-1.5">
+      {layoutModes.map((m) => {
+        const isActive = layoutMode === m.id;
+        return (
+          <motion.button
+            key={m.id}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setLayoutMode(m.id)}
+            className={`flex-1 flex flex-col items-center gap-1.5 py-2.5 rounded-xl text-xs font-medium transition-all duration-300 ${
+              isActive
+                ? "bg-primary/10 text-primary border border-primary/20"
+                : "text-muted-foreground hover:text-foreground hover:bg-secondary/30"
+            }`}
+          >
+            <m.icon className="w-4 h-4" />
+            <span>{m.label}</span>
+          </motion.button>
+        );
+      })}
+    </div>
+  );
+};
 
 const navItems = [
   { to: "/", icon: LayoutDashboard, label: "Dashboard" },
@@ -171,6 +205,13 @@ const AppSidebar = () => {
               </motion.div>
             )}
           </AnimatePresence>
+        </div>
+
+        {/* Layout mode section */}
+        <div className="mt-2 pt-3">
+          <div className="mx-5 mb-3 h-[1px] bg-gradient-to-r from-border/60 via-border/20 to-transparent" />
+          <p className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground/60 font-semibold px-3 mb-3">Layout</p>
+          <LayoutToggle />
         </div>
       </nav>
 

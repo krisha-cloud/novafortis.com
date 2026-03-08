@@ -4,6 +4,7 @@ import AppSidebar from "./AppSidebar";
 import ParticleBackground from "./ParticleBackground";
 import { useTheme, type ThemeName } from "./ThemeProvider";
 import { useSidebarMobile } from "./SidebarMobileProvider";
+import { useLayoutMode } from "./LayoutModeProvider";
 import { Menu } from "lucide-react";
 
 import wallpaperDark from "@/assets/wallpaper-dark.jpg";
@@ -25,7 +26,13 @@ const wallpapers: Record<ThemeName, string> = {
 const Layout = () => {
   const { theme } = useTheme();
   const { open, setOpen } = useSidebarMobile();
+  const { layoutMode } = useLayoutMode();
 
+  const layoutClasses = {
+    laptop: "",
+    tablet: "max-w-[834px] mx-auto",
+    phone: "max-w-[390px] mx-auto",
+  };
   return (
     <div className="min-h-screen noise relative overflow-hidden">
       {/* Theme wallpaper */}
@@ -77,7 +84,9 @@ const Layout = () => {
       </div>
 
       <main className="lg:ml-[270px] p-4 pt-18 lg:p-10 lg:pt-10 min-h-screen relative z-10">
-        <Outlet />
+        <div className={`transition-all duration-500 ${layoutClasses[layoutMode]}`}>
+          <Outlet />
+        </div>
       </main>
     </div>
   );
