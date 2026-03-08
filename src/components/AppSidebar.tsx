@@ -173,6 +173,13 @@ const AppSidebar = () => {
             )}
           </AnimatePresence>
         </div>
+
+        {/* Layout mode section */}
+        <div className="mt-2 pt-3">
+          <div className="mx-5 mb-3 h-[1px] bg-gradient-to-r from-border/60 via-border/20 to-transparent" />
+          <p className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground/60 font-semibold px-3 mb-3">Layout</p>
+          <LayoutToggle />
+        </div>
       </nav>
 
       {/* Bottom card */}
