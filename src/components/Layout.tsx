@@ -43,7 +43,7 @@ const Layout = () => {
           />
           {/* Overlay to blend wallpaper with background color */}
           <div
-            className="absolute inset-0 bg-background/70"
+            className="absolute inset-0 bg-background/50"
           />
         </motion.div>
       </AnimatePresence>
