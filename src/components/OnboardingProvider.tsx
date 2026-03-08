@@ -21,7 +21,7 @@ export const useOnboarding = () => useContext(OnboardingContext);
 
 export const OnboardingProvider = ({ children }: { children: ReactNode }) => {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(() => {
-    const stored = localStorage.getItem("studynova-user");
+    const stored = localStorage.getItem("novafortis-user");
     return stored ? JSON.parse(stored) : null;
   });
 
@@ -29,7 +29,7 @@ export const OnboardingProvider = ({ children }: { children: ReactNode }) => {
 
   const completeOnboarding = (info: UserInfo) => {
     setUserInfo(info);
-    localStorage.setItem("studynova-user", JSON.stringify(info));
+    localStorage.setItem("novafortis-user", JSON.stringify(info));
   };
 
   return (
