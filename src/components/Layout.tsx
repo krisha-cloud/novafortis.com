@@ -84,7 +84,9 @@ const Layout = () => {
       </div>
 
       <main className="lg:ml-[270px] p-4 pt-18 lg:p-10 lg:pt-10 min-h-screen relative z-10">
-        <Outlet />
+        <div className={`transition-all duration-500 ${layoutClasses[layoutMode]}`}>
+          <Outlet />
+        </div>
       </main>
     </div>
   );
