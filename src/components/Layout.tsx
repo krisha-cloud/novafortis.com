@@ -17,6 +17,8 @@ import wallpaperSunset from "@/assets/wallpaper-sunset.jpg";
 import wallpaperForest from "@/assets/wallpaper-forest.jpg";
 import wallpaperNeon from "@/assets/wallpaper-neon.jpg";
 import wallpaperMidnight from "@/assets/wallpaper-midnight.jpg";
+import wallpaperSuperbike from "@/assets/wallpaper-superbike.jpg";
+import wallpaperSupercar from "@/assets/wallpaper-supercar.jpg";
 
 const wallpapers: Record<ThemeName, string> = {
   dark: wallpaperDark,
@@ -29,6 +31,8 @@ const wallpapers: Record<ThemeName, string> = {
   forest: wallpaperForest,
   neon: wallpaperNeon,
   midnight: wallpaperMidnight,
+  superbike: wallpaperSuperbike,
+  supercar: wallpaperSupercar,
 };
 
 const Layout = () => {
