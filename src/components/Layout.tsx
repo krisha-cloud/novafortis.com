@@ -88,6 +88,11 @@ const Layout = () => {
           <Outlet />
         </div>
       </main>
+
+      {/* Footer */}
+      <div className="fixed bottom-4 right-4 text-xs text-muted-foreground/60 pointer-events-none">
+        <p>developed by nova fortis - kp</p>
+      </div>
     </div>
   );
 };
