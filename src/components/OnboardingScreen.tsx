@@ -75,7 +75,7 @@ const OnboardingScreen = () => {
                     className="text-4xl font-display font-extrabold mb-3"
                   >
                     Welcome to{" "}
-                    <span className="text-gradient">StudyNova</span>
+                     <span className="text-gradient">Nova Fortis</span>
                   </motion.h1>
 
                   <motion.p

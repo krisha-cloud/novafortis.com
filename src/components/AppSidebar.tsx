@@ -78,7 +78,7 @@ const AppSidebar = () => {
             <Zap className="w-5 h-5 text-primary-foreground" />
           </motion.div>
           <div className="flex-1">
-            <h1 className="text-xl font-display font-bold tracking-tight text-gradient">StudyNova</h1>
+            <h1 className="text-xl font-display font-bold tracking-tight text-gradient">Nova Fortis</h1>
             <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-medium">Study Companion</p>
           </div>
           <button
