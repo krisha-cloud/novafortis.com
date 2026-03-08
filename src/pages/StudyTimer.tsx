@@ -15,6 +15,7 @@ const StudyTimer = () => {
   const [seconds, setSeconds] = useState(MODES[0].minutes * 60);
   const [running, setRunning] = useState(false);
   const [sessions, setSessions] = useState(0);
+  const [showPerformance, setShowPerformance] = useState(false);
 
   const mode = MODES[modeIndex];
   const total = mode.minutes * 60;
