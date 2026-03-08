@@ -100,6 +100,17 @@ const Layout = () => {
 
       <main className="lg:ml-[270px] p-4 pt-18 lg:p-10 lg:pt-10 min-h-screen relative z-10">
         <div className={`transition-all duration-500 ${layoutClasses[layoutMode]}`}>
+          {!isHome && (
+            <motion.button
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              onClick={() => navigate("/")}
+              className="flex items-center gap-2 mb-6 px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary/40 transition-all duration-300"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to Home
+            </motion.button>
+          )}
           <Outlet />
         </div>
       </main>
