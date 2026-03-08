@@ -87,6 +87,18 @@ const OnboardingScreen = () => {
                     Your all-in-one study companion
                   </motion.p>
 
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    className="text-muted-foreground/65 text-xs"
+                    style={{ fontSize: "0.75rem" }}
+                  >
+                    developed and published by nova fortis - kp
+                  </motion.p>
+
+                  <div className="mb-10" />
+
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
