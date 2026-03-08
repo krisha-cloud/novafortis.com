@@ -1,8 +1,9 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { Timer, BookOpen, Brain, Shield, Sparkles, LayoutDashboard, Zap, Palette, Check } from "lucide-react";
+import { Timer, BookOpen, Brain, Shield, Sparkles, LayoutDashboard, Zap, Palette, Check, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useTheme, themes } from "./ThemeProvider";
+import { useSidebarMobile } from "./SidebarMobileProvider";
 
 const navItems = [
   { to: "/", icon: LayoutDashboard, label: "Dashboard" },
@@ -17,13 +18,22 @@ const AppSidebar = () => {
   const location = useLocation();
   const { theme, setTheme } = useTheme();
   const [themesOpen, setThemesOpen] = useState(false);
+  const { open, setOpen } = useSidebarMobile();
+
+  const handleNavClick = () => {
+    setOpen(false);
+  };
 
   return (
-    <aside className="fixed left-0 top-0 h-full w-[270px] z-50 flex flex-col bg-card/30 backdrop-blur-3xl border-r border-border/30">
+    <aside
+      className={`fixed left-0 top-0 h-full w-[270px] z-50 flex flex-col bg-card/30 backdrop-blur-3xl border-r border-border/30 transition-transform duration-300 ease-in-out ${
+        open ? "translate-x-0" : "-translate-x-full"
+      } lg:translate-x-0`}
+    >
       {/* Decorative gradient line at top */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
 
-      {/* Logo */}
+      {/* Logo + Close button on mobile */}
       <div className="p-7 pb-2">
         <div className="flex items-center gap-3">
           <motion.div
@@ -33,10 +43,16 @@ const AppSidebar = () => {
           >
             <Zap className="w-5 h-5 text-primary-foreground" />
           </motion.div>
-          <div>
+          <div className="flex-1">
             <h1 className="text-xl font-display font-bold tracking-tight text-gradient">StudyNova</h1>
             <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-medium">Study Companion</p>
           </div>
+          <button
+            onClick={() => setOpen(false)}
+            className="w-8 h-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors lg:hidden"
+          >
+            <X className="w-4 h-4" />
+          </button>
         </div>
       </div>
 
@@ -49,7 +65,7 @@ const AppSidebar = () => {
         {navItems.map((item) => {
           const isActive = location.pathname === item.to;
           return (
-            <NavLink key={item.to} to={item.to}>
+            <NavLink key={item.to} to={item.to} onClick={handleNavClick}>
               <motion.div
                 whileHover={{ x: 4 }}
                 whileTap={{ scale: 0.98 }}
