@@ -17,6 +17,14 @@ const stats = [
   { icon: TrendingUp, label: "Quizzes Done", value: "0", color: "text-accent" },
 ];
 
+const leaderboard = [
+  { rank: 1, name: "Alex M.", streak: 42, icon: Crown },
+  { rank: 2, name: "Priya S.", streak: 38, icon: Medal },
+  { rank: 3, name: "Jordan K.", streak: 31, icon: Medal },
+  { rank: 4, name: "Sam W.", streak: 27, icon: Trophy },
+  { rank: 5, name: "Riley T.", streak: 22, icon: Trophy },
+];
+
 const container = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { staggerChildren: 0.08 } },
