@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Timer, BookOpen, Brain, Shield, Sparkles, ArrowRight, TrendingUp, Flame, Clock } from "lucide-react";
+import { Timer, BookOpen, Brain, Shield, Sparkles, ArrowRight, TrendingUp, Flame, Clock, Trophy, Medal, Crown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useOnboarding } from "@/components/OnboardingProvider";
 
