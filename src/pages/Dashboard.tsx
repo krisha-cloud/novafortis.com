@@ -74,7 +74,46 @@ const Dashboard = () => {
           ))}
         </motion.div>
 
-        {/* Feature cards */}
+        {/* Streak Leaderboard */}
+        <motion.div variants={item} className="mb-10">
+          <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground/60 font-semibold mb-4">🔥 Streak Leaderboard</p>
+          <div className="glass-card p-5 space-y-3">
+            {leaderboard.map((entry) => {
+              const rankColors = entry.rank === 1
+                ? "text-[hsl(38,92%,50%)] bg-[hsl(38,92%,50%)]/10"
+                : entry.rank <= 3
+                ? "text-muted-foreground bg-secondary/80"
+                : "text-muted-foreground bg-secondary/50";
+              return (
+                <div
+                  key={entry.rank}
+                  className={`flex items-center gap-4 p-3 rounded-xl transition-colors ${entry.rank === 1 ? "bg-[hsl(38,92%,50%)]/5 border border-[hsl(38,92%,50%)]/10" : "hover:bg-secondary/30"}`}
+                >
+                  <div className={`w-9 h-9 rounded-lg flex items-center justify-center text-sm font-bold ${rankColors}`}>
+                    {entry.rank}
+                  </div>
+                  <entry.icon className={`w-4 h-4 ${entry.rank === 1 ? "text-[hsl(38,92%,50%)]" : "text-muted-foreground/40"}`} />
+                  <span className="font-medium flex-1">{entry.name}</span>
+                  <div className="flex items-center gap-1.5">
+                    <Flame className="w-4 h-4 text-[hsl(38,92%,50%)]" />
+                    <span className="text-sm font-semibold">{entry.streak} days</span>
+                  </div>
+                </div>
+              );
+            })}
+            <div className="flex items-center gap-4 p-3 rounded-xl border border-dashed border-border/40 mt-2">
+              <div className="w-9 h-9 rounded-lg flex items-center justify-center text-sm font-bold text-primary bg-primary/10">
+                —
+              </div>
+              <Trophy className="w-4 h-4 text-primary/40" />
+              <span className="font-medium flex-1 text-muted-foreground">You</span>
+              <div className="flex items-center gap-1.5">
+                <Flame className="w-4 h-4 text-[hsl(38,92%,50%)]" />
+                <span className="text-sm font-semibold">0 days</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
         <motion.div variants={item}>
           <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground/60 font-semibold mb-4">Tools</p>
         </motion.div>
