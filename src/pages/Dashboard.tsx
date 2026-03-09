@@ -54,9 +54,6 @@ const Dashboard = () => {
           <p className="text-muted-foreground text-lg max-w-lg">
             Your all-in-one study companion. Pick a tool below to get started.
           </p>
-          <p className="text-muted-foreground text-lg max-w-lg">
-            Your all-in-one study companion. Pick a tool below to get started.
-          </p>
         </motion.div>
 
         {/* Stats */}
