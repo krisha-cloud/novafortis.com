@@ -111,6 +111,41 @@ const Dashboard = () => {
             </div>
           </div>
         </motion.div>
+
+        {/* Study Battle */}
+        <motion.div variants={item} className="mb-10">
+          <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground/60 font-semibold mb-4">⚔️ Study Battle</p>
+          <div className="glass-card p-6">
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-destructive/20 to-destructive/5 flex items-center justify-center shrink-0">
+                <Swords className="w-8 h-8 text-destructive" />
+              </div>
+              <div className="flex-1 text-center sm:text-left">
+                <h3 className="font-display font-bold text-xl mb-1">Challenge a Friend</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                  Go head-to-head in a timed quiz battle. Answer faster, score higher, claim victory!
+                </p>
+                <div className="flex flex-wrap items-center gap-3 justify-center sm:justify-start">
+                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground bg-secondary/60 px-3 py-1.5 rounded-full">
+                    <Users className="w-3.5 h-3.5" />
+                    <span>1v1 Mode</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground bg-secondary/60 px-3 py-1.5 rounded-full">
+                    <Zap className="w-3.5 h-3.5" />
+                    <span>Speed Bonus</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground bg-secondary/60 px-3 py-1.5 rounded-full">
+                    <Trophy className="w-3.5 h-3.5" />
+                    <span>Earn XP</span>
+                  </div>
+                </div>
+              </div>
+              <button className="shrink-0 px-6 py-3 rounded-xl bg-gradient-to-r from-destructive to-destructive/80 text-destructive-foreground font-semibold text-sm hover:opacity-90 transition-opacity">
+                Start Battle
+              </button>
+            </div>
+          </div>
+        </motion.div>
         <motion.div variants={item}>
           <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground/60 font-semibold mb-4">Tools</p>
         </motion.div>
