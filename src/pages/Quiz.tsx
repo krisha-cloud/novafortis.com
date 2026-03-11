@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Plus, Play, CheckCircle2, XCircle, ArrowRight, Brain, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import PerformanceModal from "@/components/PerformanceModal";
+import { useXP } from "@/components/XPProvider";
 
 interface Question {
   id: string;
@@ -19,6 +20,7 @@ interface QuizData {
 }
 
 const Quiz = () => {
+  const { awardXP } = useXP();
   const [quizzes, setQuizzes] = useState<QuizData[]>([]);
   const [creating, setCreating] = useState(false);
   const [playing, setPlaying] = useState<string | null>(null);
@@ -27,6 +29,7 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
   const [showPerformance, setShowPerformance] = useState(false);
+  const xpAwardedRef = useRef(false);
 
   const [newTitle, setNewTitle] = useState("");
   const [newQuestions, setNewQuestions] = useState<Question[]>([]);
@@ -62,6 +65,7 @@ const Quiz = () => {
     setSelected(null);
     setScore(0);
     setFinished(false);
+    xpAwardedRef.current = false;
   };
 
   const activeQuiz = quizzes.find((q) => q.id === playing);
@@ -78,6 +82,12 @@ const Quiz = () => {
     if (currentQ + 1 >= activeQuiz.questions.length) {
       setFinished(true);
       setShowPerformance(true);
+      if (!xpAwardedRef.current) {
+        xpAwardedRef.current = true;
+        const baseXP = 25;
+        const bonusXP = Math.round((score / activeQuiz.questions.length) * 25);
+        awardXP("quiz", baseXP + bonusXP, `Quiz: ${activeQuiz.title}`);
+      }
     } else {
       setCurrentQ((c) => c + 1);
       setSelected(null);

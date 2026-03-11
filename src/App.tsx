@@ -7,6 +7,7 @@ import { ThemeProvider } from "./components/ThemeProvider";
 import { SidebarMobileProvider } from "./components/SidebarMobileProvider";
 import { LayoutModeProvider } from "./components/LayoutModeProvider";
 import { OnboardingProvider, useOnboarding } from "./components/OnboardingProvider";
+import { XPProvider } from "./components/XPProvider";
 import OnboardingScreen from "./components/OnboardingScreen";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
@@ -47,15 +48,17 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
       <OnboardingProvider>
-        <SidebarMobileProvider>
-          <LayoutModeProvider>
-            <TooltipProvider>
-              <Toaster />
-              <Sonner />
-              <AppContent />
-            </TooltipProvider>
-          </LayoutModeProvider>
-        </SidebarMobileProvider>
+        <XPProvider>
+          <SidebarMobileProvider>
+            <LayoutModeProvider>
+              <TooltipProvider>
+                <Toaster />
+                <Sonner />
+                <AppContent />
+              </TooltipProvider>
+            </LayoutModeProvider>
+          </SidebarMobileProvider>
+        </XPProvider>
       </OnboardingProvider>
     </ThemeProvider>
   </QueryClientProvider>

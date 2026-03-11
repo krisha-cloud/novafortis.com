@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Pause, RotateCcw, Coffee, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PerformanceModal from "@/components/PerformanceModal";
+import { useXP } from "@/components/XPProvider";
 
 const MODES = [
   { label: "Focus", minutes: 25 },
@@ -11,6 +12,7 @@ const MODES = [
 ];
 
 const StudyTimer = () => {
+  const { awardXP } = useXP();
   const [modeIndex, setModeIndex] = useState(0);
   const [seconds, setSeconds] = useState(MODES[0].minutes * 60);
   const [running, setRunning] = useState(false);
@@ -31,6 +33,7 @@ const StudyTimer = () => {
           if (modeIndex === 0) {
             setSessions((p) => p + 1);
             setShowPerformance(true);
+            awardXP("timer", 50, "Focus session complete");
           }
           return 0;
         }
