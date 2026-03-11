@@ -12,6 +12,7 @@ const MODES = [
 ];
 
 const StudyTimer = () => {
+  const { awardXP } = useXP();
   const [modeIndex, setModeIndex] = useState(0);
   const [seconds, setSeconds] = useState(MODES[0].minutes * 60);
   const [running, setRunning] = useState(false);
