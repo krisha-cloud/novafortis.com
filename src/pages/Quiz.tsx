@@ -82,6 +82,12 @@ const Quiz = () => {
     if (currentQ + 1 >= activeQuiz.questions.length) {
       setFinished(true);
       setShowPerformance(true);
+      if (!xpAwardedRef.current) {
+        xpAwardedRef.current = true;
+        const baseXP = 25;
+        const bonusXP = Math.round((score / activeQuiz.questions.length) * 25);
+        awardXP("quiz", baseXP + bonusXP, `Quiz: ${activeQuiz.title}`);
+      }
     } else {
       setCurrentQ((c) => c + 1);
       setSelected(null);
