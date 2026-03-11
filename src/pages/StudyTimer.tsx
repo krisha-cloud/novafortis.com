@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Pause, RotateCcw, Coffee, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PerformanceModal from "@/components/PerformanceModal";
+import { useXP } from "@/components/XPProvider";
 
 const MODES = [
   { label: "Focus", minutes: 25 },
