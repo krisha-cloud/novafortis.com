@@ -20,6 +20,7 @@ interface QuizData {
 }
 
 const Quiz = () => {
+  const { awardXP } = useXP();
   const [quizzes, setQuizzes] = useState<QuizData[]>([]);
   const [creating, setCreating] = useState(false);
   const [playing, setPlaying] = useState<string | null>(null);
@@ -28,6 +29,7 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
   const [showPerformance, setShowPerformance] = useState(false);
+  const xpAwardedRef = useRef(false);
 
   const [newTitle, setNewTitle] = useState("");
   const [newQuestions, setNewQuestions] = useState<Question[]>([]);
