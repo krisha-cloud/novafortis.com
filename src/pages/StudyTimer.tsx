@@ -33,6 +33,7 @@ const StudyTimer = () => {
           if (modeIndex === 0) {
             setSessions((p) => p + 1);
             setShowPerformance(true);
+            awardXP("timer", 50, "Focus session complete");
           }
           return 0;
         }
