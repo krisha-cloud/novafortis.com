@@ -65,6 +65,7 @@ const Quiz = () => {
     setSelected(null);
     setScore(0);
     setFinished(false);
+    xpAwardedRef.current = false;
   };
 
   const activeQuiz = quizzes.find((q) => q.id === playing);
