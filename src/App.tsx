@@ -48,15 +48,17 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
       <OnboardingProvider>
-        <SidebarMobileProvider>
-          <LayoutModeProvider>
-            <TooltipProvider>
-              <Toaster />
-              <Sonner />
-              <AppContent />
-            </TooltipProvider>
-          </LayoutModeProvider>
-        </SidebarMobileProvider>
+        <XPProvider>
+          <SidebarMobileProvider>
+            <LayoutModeProvider>
+              <TooltipProvider>
+                <Toaster />
+                <Sonner />
+                <AppContent />
+              </TooltipProvider>
+            </LayoutModeProvider>
+          </SidebarMobileProvider>
+        </XPProvider>
       </OnboardingProvider>
     </ThemeProvider>
   </QueryClientProvider>

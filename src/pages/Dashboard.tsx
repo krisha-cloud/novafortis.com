@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
-import { Timer, BookOpen, Brain, Shield, Sparkles, ArrowRight, TrendingUp, Flame, Clock, Trophy, Medal, Crown, Swords, Users, Zap } from "lucide-react";
+import { Timer, BookOpen, Brain, Shield, Sparkles, ArrowRight, TrendingUp, Flame, Clock, Trophy, Medal, Crown, Swords, Users, Zap, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useOnboarding } from "@/components/OnboardingProvider";
+import { useXP } from "@/components/XPProvider";
+import { Progress } from "@/components/ui/progress";
 
 const features = [
   { to: "/timer", icon: Timer, title: "Study Timer", desc: "Pomodoro focus sessions with visual tracking", gradient: "from-primary/20 to-primary/5", iconColor: "text-primary", borderHover: "hover:border-primary/30" },
@@ -25,6 +27,13 @@ const leaderboard = [
   { rank: 5, name: "Riley T.", streak: 22, icon: Trophy },
 ];
 
+const sourceIcons: Record<string, string> = {
+  quiz: "🧠",
+  timer: "⏱️",
+  battle: "⚔️",
+  streak: "🔥",
+};
+
 const container = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { staggerChildren: 0.08 } },
@@ -36,7 +45,9 @@ const item = {
 
 const Dashboard = () => {
   const { userInfo } = useOnboarding();
+  const { level, totalXP, xpForCurrentLevel, xpToNextLevel, progressPercent, history } = useXP();
   const firstName = userInfo?.name?.split(" ")[0] || "Student";
+  const recentHistory = history.slice(0, 5);
 
   return (
     <div className="max-w-6xl">
@@ -54,6 +65,60 @@ const Dashboard = () => {
           <p className="text-muted-foreground text-lg max-w-lg">
             Your all-in-one study companion. Pick a tool below to get started.
           </p>
+        </motion.div>
+
+        {/* XP & Level Card */}
+        <motion.div variants={item} className="mb-10">
+          <div className="glass-card p-6">
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              {/* Level Badge */}
+              <div className="relative shrink-0">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/30 to-accent/20 flex items-center justify-center border border-primary/20">
+                  <div className="text-center">
+                    <Star className="w-5 h-5 text-primary mx-auto mb-0.5" />
+                    <span className="text-2xl font-display font-extrabold text-foreground">{level}</span>
+                  </div>
+                </div>
+                <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+                  <Zap className="w-3.5 h-3.5 text-primary-foreground" />
+                </div>
+              </div>
+
+              {/* XP Progress */}
+              <div className="flex-1 w-full">
+                <div className="flex items-baseline justify-between mb-2">
+                  <h3 className="font-display font-bold text-lg">Level {level}</h3>
+                  <span className="text-sm text-muted-foreground font-medium">
+                    {totalXP.toLocaleString()} XP total
+                  </span>
+                </div>
+                <Progress value={progressPercent} className="h-3 mb-2" />
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                  <span>{xpForCurrentLevel} / {xpToNextLevel} XP to next level</span>
+                  <span className="text-primary font-semibold">{xpToNextLevel - xpForCurrentLevel} XP needed</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Recent XP Activity */}
+            {recentHistory.length > 0 && (
+              <div className="mt-5 pt-5 border-t border-border/40">
+                <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground/60 font-semibold mb-3">Recent XP</p>
+                <div className="flex flex-wrap gap-2">
+                  {recentHistory.map((event) => (
+                    <div
+                      key={event.id}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary/60 text-xs font-medium"
+                    >
+                      <span>{sourceIcons[event.source]}</span>
+                      <span className="text-primary font-bold">+{event.amount}</span>
+                      <span className="text-muted-foreground">{event.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </motion.div>
 
         {/* Stats */}
@@ -146,6 +211,7 @@ const Dashboard = () => {
             </div>
           </div>
         </motion.div>
+
         <motion.div variants={item}>
           <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground/60 font-semibold mb-4">Tools</p>
         </motion.div>
