@@ -75,17 +75,23 @@ const Dashboard = () => {
           <div className="glass-card p-6">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               {/* Level Badge */}
-              <div className="relative shrink-0">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/30 to-accent/20 flex items-center justify-center border border-primary/20">
+              <Link to="/achievements" className="relative shrink-0 group cursor-pointer">
+                <div
+                  className="w-20 h-20 rounded-2xl flex items-center justify-center border group-hover:scale-105 transition-transform duration-300"
+                  style={{
+                    background: `linear-gradient(135deg, ${badge.color}30, ${badge.color}10)`,
+                    borderColor: `${badge.color}33`,
+                  }}
+                >
                   <div className="text-center">
-                    <Star className="w-5 h-5 text-primary mx-auto mb-0.5" />
-                    <span className="text-2xl font-display font-extrabold text-foreground">{level}</span>
+                    <span className="text-2xl">{badge.emoji}</span>
+                    <p className="text-[10px] font-bold text-muted-foreground mt-0.5">{badge.title}</p>
                   </div>
                 </div>
                 <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-primary flex items-center justify-center">
                   <Zap className="w-3.5 h-3.5 text-primary-foreground" />
                 </div>
-              </div>
+              </Link>
 
               {/* XP Progress */}
               <div className="flex-1 w-full">
