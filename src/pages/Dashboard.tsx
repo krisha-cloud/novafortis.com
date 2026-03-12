@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useOnboarding } from "@/components/OnboardingProvider";
 import { useXP } from "@/components/XPProvider";
 import { Progress } from "@/components/ui/progress";
+import { getBadgeForLevel, getAllUnlockedPerks } from "@/lib/levels";
 
 const features = [
   { to: "/timer", icon: Timer, title: "Study Timer", desc: "Pomodoro focus sessions with visual tracking", gradient: "from-primary/20 to-primary/5", iconColor: "text-primary", borderHover: "hover:border-primary/30" },
@@ -48,6 +49,8 @@ const Dashboard = () => {
   const { level, totalXP, xpForCurrentLevel, xpToNextLevel, progressPercent, history } = useXP();
   const firstName = userInfo?.name?.split(" ")[0] || "Student";
   const recentHistory = history.slice(0, 5);
+  const badge = getBadgeForLevel(level);
+  const activePerks = getAllUnlockedPerks(level).filter(p => p.type === "functional");
 
   return (
     <div className="max-w-6xl">
@@ -72,17 +75,23 @@ const Dashboard = () => {
           <div className="glass-card p-6">
             <div className="flex flex-col sm:flex-row items-center gap-6">
               {/* Level Badge */}
-              <div className="relative shrink-0">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/30 to-accent/20 flex items-center justify-center border border-primary/20">
+              <Link to="/achievements" className="relative shrink-0 group cursor-pointer">
+                <div
+                  className="w-20 h-20 rounded-2xl flex items-center justify-center border group-hover:scale-105 transition-transform duration-300"
+                  style={{
+                    background: `linear-gradient(135deg, ${badge.color}30, ${badge.color}10)`,
+                    borderColor: `${badge.color}33`,
+                  }}
+                >
                   <div className="text-center">
-                    <Star className="w-5 h-5 text-primary mx-auto mb-0.5" />
-                    <span className="text-2xl font-display font-extrabold text-foreground">{level}</span>
+                    <span className="text-2xl">{badge.emoji}</span>
+                    <p className="text-[10px] font-bold text-muted-foreground mt-0.5">{badge.title}</p>
                   </div>
                 </div>
                 <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-primary flex items-center justify-center">
                   <Zap className="w-3.5 h-3.5 text-primary-foreground" />
                 </div>
-              </div>
+              </Link>
 
               {/* XP Progress */}
               <div className="flex-1 w-full">
@@ -97,6 +106,26 @@ const Dashboard = () => {
                   <span>{xpForCurrentLevel} / {xpToNextLevel} XP to next level</span>
                   <span className="text-primary font-semibold">{xpToNextLevel - xpForCurrentLevel} XP needed</span>
                 </div>
+
+                {/* Active Perks */}
+                {activePerks.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {activePerks.slice(0, 3).map((perk) => (
+                      <span
+                        key={perk.id}
+                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[11px] font-medium"
+                        title={perk.description}
+                      >
+                        {perk.emoji} {perk.label}
+                      </span>
+                    ))}
+                    {activePerks.length > 3 && (
+                      <Link to="/achievements" className="text-[11px] text-primary font-medium hover:underline">
+                        +{activePerks.length - 3} more
+                      </Link>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
 

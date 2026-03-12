@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { Timer, BookOpen, Brain, Shield, Sparkles, LayoutDashboard, Zap, Palette, Check, X, Monitor, Tablet, Smartphone } from "lucide-react";
+import { Timer, BookOpen, Brain, Shield, Sparkles, LayoutDashboard, Zap, Palette, Check, X, Monitor, Tablet, Smartphone, Trophy } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useTheme, themes } from "./ThemeProvider";
@@ -46,6 +46,7 @@ const navItems = [
   { to: "/quiz", icon: Brain, label: "Quiz" },
   { to: "/focus", icon: Shield, label: "Focus Mode" },
   { to: "/study-plan", icon: Sparkles, label: "AI Planner" },
+  { to: "/achievements", icon: Trophy, label: "Achievements" },
 ];
 
 const AppSidebar = () => {
