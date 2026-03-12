@@ -106,6 +106,26 @@ const Dashboard = () => {
                   <span>{xpForCurrentLevel} / {xpToNextLevel} XP to next level</span>
                   <span className="text-primary font-semibold">{xpToNextLevel - xpForCurrentLevel} XP needed</span>
                 </div>
+
+                {/* Active Perks */}
+                {activePerks.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {activePerks.slice(0, 3).map((perk) => (
+                      <span
+                        key={perk.id}
+                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[11px] font-medium"
+                        title={perk.description}
+                      >
+                        {perk.emoji} {perk.label}
+                      </span>
+                    ))}
+                    {activePerks.length > 3 && (
+                      <Link to="/achievements" className="text-[11px] text-primary font-medium hover:underline">
+                        +{activePerks.length - 3} more
+                      </Link>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
 

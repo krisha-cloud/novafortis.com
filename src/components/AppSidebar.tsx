@@ -46,6 +46,7 @@ const navItems = [
   { to: "/quiz", icon: Brain, label: "Quiz" },
   { to: "/focus", icon: Shield, label: "Focus Mode" },
   { to: "/study-plan", icon: Sparkles, label: "AI Planner" },
+  { to: "/achievements", icon: Trophy, label: "Achievements" },
 ];
 
 const AppSidebar = () => {
