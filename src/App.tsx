@@ -17,6 +17,7 @@ import Quiz from "./pages/Quiz";
 import FocusMode from "./pages/FocusMode";
 import StudyPlan from "./pages/StudyPlan";
 import Achievements from "./pages/Achievements";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
