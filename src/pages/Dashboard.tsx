@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useOnboarding } from "@/components/OnboardingProvider";
 import { useXP } from "@/components/XPProvider";
 import { Progress } from "@/components/ui/progress";
+import { getBadgeForLevel, getAllUnlockedPerks } from "@/lib/levels";
 
 const features = [
   { to: "/timer", icon: Timer, title: "Study Timer", desc: "Pomodoro focus sessions with visual tracking", gradient: "from-primary/20 to-primary/5", iconColor: "text-primary", borderHover: "hover:border-primary/30" },
