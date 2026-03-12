@@ -49,6 +49,8 @@ const Dashboard = () => {
   const { level, totalXP, xpForCurrentLevel, xpToNextLevel, progressPercent, history } = useXP();
   const firstName = userInfo?.name?.split(" ")[0] || "Student";
   const recentHistory = history.slice(0, 5);
+  const badge = getBadgeForLevel(level);
+  const activePerks = getAllUnlockedPerks(level).filter(p => p.type === "functional");
 
   return (
     <div className="max-w-6xl">
