@@ -128,7 +128,7 @@ const Checklist = () => {
     setItems((prev) =>
       prev.map((item) => {
         if (item.id === id) {
-          if (!item.completed) addXP(10);
+          if (!item.completed) awardXP("streak", 10, "Completed a task");
           return { ...item, completed: !item.completed };
         }
         return item;
