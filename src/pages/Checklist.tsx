@@ -54,7 +54,7 @@ const getStoredCategories = (): Category[] => {
 };
 
 const Checklist = () => {
-  const { addXP } = useXP();
+  const { awardXP } = useXP();
   const [items, setItems] = useState<ChecklistItem[]>([]);
   const [categories, setCategories] = useState<Category[]>(getStoredCategories);
   const [newText, setNewText] = useState("");
