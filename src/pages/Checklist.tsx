@@ -121,7 +121,7 @@ const Checklist = () => {
     setNewText("");
     setNewDueDate("");
     setShowAddForm(false);
-    addXP(5);
+    awardXP("streak", 5, "Added a task");
   };
 
   const toggleItem = (id: string) => {
