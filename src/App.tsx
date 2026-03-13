@@ -41,6 +41,7 @@ const AppContent = () => {
           <Route path="/focus" element={<FocusMode />} />
           <Route path="/study-plan" element={<StudyPlan />} />
           <Route path="/achievements" element={<Achievements />} />
+          <Route path="/checklist" element={<Checklist />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="*" element={<NotFound />} />
