@@ -18,6 +18,7 @@ import FocusMode from "./pages/FocusMode";
 import StudyPlan from "./pages/StudyPlan";
 import Achievements from "./pages/Achievements";
 import Profile from "./pages/Profile";
+import Checklist from "./pages/Checklist";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const AppContent = () => {
           <Route path="/focus" element={<FocusMode />} />
           <Route path="/study-plan" element={<StudyPlan />} />
           <Route path="/achievements" element={<Achievements />} />
+          <Route path="/checklist" element={<Checklist />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="*" element={<NotFound />} />
