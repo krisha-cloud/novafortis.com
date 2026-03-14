@@ -57,6 +57,7 @@ const AppSidebar = () => {
   const { theme, setTheme } = useTheme();
   const [themesOpen, setThemesOpen] = useState(false);
   const { open, setOpen } = useSidebarMobile();
+  const { logout } = useOnboarding();
 
   const handleNavClick = () => {
     setOpen(false);
