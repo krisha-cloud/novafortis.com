@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Camera, Upload, User, Clock, Check } from "lucide-react";
+import { Camera, Upload, User, Clock, Check, LogOut } from "lucide-react";
 import { useOnboarding } from "@/components/OnboardingProvider";
 import { useXP } from "@/components/XPProvider";
 import { getBadgeForLevel, getAllUnlockedPerks } from "@/lib/levels";
@@ -33,7 +33,7 @@ const item = {
 };
 
 const Profile = () => {
-  const { userInfo, updateProfile } = useOnboarding();
+  const { userInfo, updateProfile, logout } = useOnboarding();
   const { level, totalXP, progressPercent, xpForCurrentLevel, xpToNextLevel } = useXP();
   const badge = getBadgeForLevel(level);
   const perks = getAllUnlockedPerks(level);
@@ -242,6 +242,19 @@ const Profile = () => {
             </div>
           </motion.div>
         )}
+
+        {/* Logout */}
+        <motion.div variants={item} className="mt-6">
+          <motion.button
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={logout}
+            className="w-full flex items-center justify-center gap-3 px-6 py-3.5 rounded-2xl text-sm font-semibold text-destructive border border-destructive/20 hover:bg-destructive/10 transition-colors"
+          >
+            <LogOut className="w-4 h-4" />
+            Log Out
+          </motion.button>
+        </motion.div>
       </motion.div>
     </div>
   );
