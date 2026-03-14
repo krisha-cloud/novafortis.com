@@ -19,6 +19,7 @@ const OnboardingContext = createContext<OnboardingContextType>({
   isOnboarded: false,
   completeOnboarding: () => {},
   updateProfile: () => {},
+  logout: () => {},
 });
 
 export const useOnboarding = () => useContext(OnboardingContext);
