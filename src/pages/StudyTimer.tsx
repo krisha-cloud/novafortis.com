@@ -1,15 +1,13 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Pause, RotateCcw, Coffee, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PerformanceModal from "@/components/PerformanceModal";
 import { useXP } from "@/components/XPProvider";
+import { useOnboarding } from "@/components/OnboardingProvider";
 
-const MODES = [
-  { label: "Focus", minutes: 25 },
-  { label: "Short Break", minutes: 5 },
-  { label: "Long Break", minutes: 15 },
-];
+const DEFAULT_FOCUS = 25;
+
 
 const StudyTimer = () => {
   const { awardXP } = useXP();
