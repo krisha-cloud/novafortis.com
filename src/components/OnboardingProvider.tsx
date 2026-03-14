@@ -11,6 +11,7 @@ interface OnboardingContextType {
   isOnboarded: boolean;
   completeOnboarding: (info: UserInfo) => void;
   updateProfile: (updates: Partial<UserInfo>) => void;
+  logout: () => void;
 }
 
 const OnboardingContext = createContext<OnboardingContextType>({
