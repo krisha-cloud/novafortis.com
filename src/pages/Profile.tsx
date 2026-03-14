@@ -33,7 +33,7 @@ const item = {
 };
 
 const Profile = () => {
-  const { userInfo, updateProfile } = useOnboarding();
+  const { userInfo, updateProfile, logout } = useOnboarding();
   const { level, totalXP, progressPercent, xpForCurrentLevel, xpToNextLevel } = useXP();
   const badge = getBadgeForLevel(level);
   const perks = getAllUnlockedPerks(level);
