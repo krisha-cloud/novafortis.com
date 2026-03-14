@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Camera, Upload, User, Mail, Star, Trophy, Sparkles, Check } from "lucide-react";
+import { Camera, Upload, User, Clock, Check } from "lucide-react";
 import { useOnboarding } from "@/components/OnboardingProvider";
 import { useXP } from "@/components/XPProvider";
 import { getBadgeForLevel, getAllUnlockedPerks } from "@/lib/levels";
