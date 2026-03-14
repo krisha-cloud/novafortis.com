@@ -242,6 +242,19 @@ const Profile = () => {
             </div>
           </motion.div>
         )}
+
+        {/* Logout */}
+        <motion.div variants={item} className="mt-6">
+          <motion.button
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={logout}
+            className="w-full flex items-center justify-center gap-3 px-6 py-3.5 rounded-2xl text-sm font-semibold text-destructive border border-destructive/20 hover:bg-destructive/10 transition-colors"
+          >
+            <LogOut className="w-4 h-4" />
+            Log Out
+          </motion.button>
+        </motion.div>
       </motion.div>
     </div>
   );

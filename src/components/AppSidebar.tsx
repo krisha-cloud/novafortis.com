@@ -218,18 +218,7 @@ const AppSidebar = () => {
         </div>
       </nav>
 
-      {/* Logout button */}
-      <div className="px-4 mb-3">
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.97 }}
-          onClick={logout}
-          className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-destructive hover:bg-destructive/10 transition-colors"
-        >
-          <LogOut className="w-4 h-4" />
-          Log Out
-        </motion.button>
-      </div>
+
 
       {/* Bottom card */}
       <div className="p-4 mx-4 mb-5 rounded-2xl border border-primary/10 bg-primary/5 backdrop-blur-xl">
