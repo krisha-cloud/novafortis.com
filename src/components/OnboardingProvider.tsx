@@ -2,8 +2,12 @@ import { createContext, useContext, useState, useCallback, ReactNode } from "rea
 
 interface UserInfo {
   name: string;
-  studyDuration: number; // in minutes
-  avatar?: string; // URL or base64 data URI
+  studyDuration: number;
+  heardFrom?: string;
+  userType?: string;
+  goals?: string[];
+  subjects?: string[];
+  avatar?: string;
 }
 
 interface OnboardingContextType {
