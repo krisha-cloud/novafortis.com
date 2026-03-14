@@ -46,8 +46,13 @@ export const OnboardingProvider = ({ children }: { children: ReactNode }) => {
     });
   }, []);
 
+  const logout = useCallback(() => {
+    setUserInfo(null);
+    localStorage.removeItem("novafortis-user");
+  }, []);
+
   return (
-    <OnboardingContext.Provider value={{ userInfo, isOnboarded, completeOnboarding, updateProfile }}>
+    <OnboardingContext.Provider value={{ userInfo, isOnboarded, completeOnboarding, updateProfile, logout }}>
       {children}
     </OnboardingContext.Provider>
   );
