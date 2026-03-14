@@ -1,22 +1,29 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, ArrowRight, User, Mail, Sparkles } from "lucide-react";
+import { Zap, ArrowRight, User, Clock, Sparkles } from "lucide-react";
 import { useOnboarding } from "./OnboardingProvider";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
+const DURATION_OPTIONS = [
+  { label: "25 min", value: 25, desc: "Classic Pomodoro" },
+  { label: "45 min", value: 45, desc: "Deep focus" },
+  { label: "60 min", value: 60, desc: "Long session" },
+  { label: "90 min", value: 90, desc: "Ultra marathon" },
+];
+
 const OnboardingScreen = () => {
   const { completeOnboarding } = useOnboarding();
-  const [step, setStep] = useState(0); // 0 = welcome splash, 1 = name, 2 = email
+  const [step, setStep] = useState(0);
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [selectedDuration, setSelectedDuration] = useState<number | null>(null);
   const [exiting, setExiting] = useState(false);
 
   const handleFinish = () => {
-    if (!email.trim()) return;
+    if (!selectedDuration) return;
     setExiting(true);
     setTimeout(() => {
-      completeOnboarding({ name: name.trim(), email: email.trim() });
+      completeOnboarding({ name: name.trim(), studyDuration: selectedDuration });
     }, 800);
   };
 
@@ -29,10 +36,8 @@ const OnboardingScreen = () => {
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden"
         >
-          {/* Background */}
           <div className="absolute inset-0 bg-background" />
           
-          {/* Animated gradient orbs */}
           <motion.div
             animate={{ x: [0, 30, -20, 0], y: [0, -40, 20, 0] }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
@@ -46,7 +51,6 @@ const OnboardingScreen = () => {
             style={{ background: "hsl(var(--accent))" }}
           />
 
-          {/* Content */}
           <div className="relative z-10 w-full max-w-md px-6">
             <AnimatePresence mode="wait">
               {step === 0 && (
@@ -58,7 +62,6 @@ const OnboardingScreen = () => {
                   transition={{ duration: 0.5, ease: "easeOut" }}
                   className="text-center"
                 >
-                  {/* Logo */}
                   <motion.div
                     initial={{ scale: 0, rotate: -180 }}
                     animate={{ scale: 1, rotate: 0 }}
@@ -75,7 +78,7 @@ const OnboardingScreen = () => {
                     className="text-4xl font-display font-extrabold mb-3"
                   >
                     Welcome to{" "}
-                     <span className="text-gradient">Nova Fortis</span>
+                    <span className="text-gradient">Nova Fortis</span>
                   </motion.h1>
 
                   <motion.p
@@ -92,7 +95,6 @@ const OnboardingScreen = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
                     className="text-muted-foreground/65 text-xs"
-                    style={{ fontSize: "0.75rem" }}
                   >
                     developed and published by nova fortis - kp
                   </motion.p>
@@ -182,7 +184,6 @@ const OnboardingScreen = () => {
                     </Button>
                   </motion.div>
 
-                  {/* Step indicator */}
                   <div className="flex justify-center gap-2 mt-8">
                     <div className="w-8 h-1.5 rounded-full bg-primary" />
                     <div className="w-8 h-1.5 rounded-full bg-secondary/50" />
@@ -192,7 +193,7 @@ const OnboardingScreen = () => {
 
               {step === 2 && (
                 <motion.div
-                  key="email"
+                  key="duration"
                   initial={{ opacity: 0, x: 60 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -60 }}
@@ -205,28 +206,37 @@ const OnboardingScreen = () => {
                     transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
                     className="w-16 h-16 rounded-2xl bg-secondary/50 border border-border/30 flex items-center justify-center mx-auto mb-6"
                   >
-                    <Mail className="w-7 h-7 text-primary" />
+                    <Clock className="w-7 h-7 text-primary" />
                   </motion.div>
 
                   <h2 className="text-2xl font-display font-bold mb-2">
                     Hey {name}! <Sparkles className="w-5 h-5 inline text-primary" />
                   </h2>
-                  <p className="text-muted-foreground text-sm mb-8">What's your email address?</p>
+                  <p className="text-muted-foreground text-sm mb-8">How long should your study sessions be?</p>
 
-                  <Input
-                    type="email"
-                    placeholder="Enter your email..."
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && handleFinish()}
-                    autoFocus
-                    className="bg-secondary/50 border-border/30 rounded-xl h-14 text-center text-lg font-medium mb-6 backdrop-blur-xl"
-                  />
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    {DURATION_OPTIONS.map((opt) => (
+                      <motion.button
+                        key={opt.value}
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
+                        onClick={() => setSelectedDuration(opt.value)}
+                        className={`p-4 rounded-2xl border transition-all text-left ${
+                          selectedDuration === opt.value
+                            ? "border-primary bg-primary/10 shadow-md"
+                            : "border-border/30 bg-secondary/50 hover:border-border/60"
+                        }`}
+                      >
+                        <div className="text-lg font-bold">{opt.label}</div>
+                        <div className="text-xs text-muted-foreground">{opt.desc}</div>
+                      </motion.button>
+                    ))}
+                  </div>
 
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                     <Button
                       onClick={handleFinish}
-                      disabled={!email.trim()}
+                      disabled={!selectedDuration}
                       className="gradient-primary text-primary-foreground rounded-2xl h-12 px-8 font-semibold glow-primary w-full"
                     >
                       Start Studying
@@ -234,7 +244,6 @@ const OnboardingScreen = () => {
                     </Button>
                   </motion.div>
 
-                  {/* Step indicator */}
                   <div className="flex justify-center gap-2 mt-8">
                     <div className="w-8 h-1.5 rounded-full bg-primary" />
                     <div className="w-8 h-1.5 rounded-full bg-primary" />

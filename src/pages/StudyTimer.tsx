@@ -1,18 +1,25 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Pause, RotateCcw, Coffee, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PerformanceModal from "@/components/PerformanceModal";
 import { useXP } from "@/components/XPProvider";
+import { useOnboarding } from "@/components/OnboardingProvider";
 
-const MODES = [
-  { label: "Focus", minutes: 25 },
-  { label: "Short Break", minutes: 5 },
-  { label: "Long Break", minutes: 15 },
-];
+const DEFAULT_FOCUS = 25;
+
 
 const StudyTimer = () => {
   const { awardXP } = useXP();
+  const { userInfo } = useOnboarding();
+  const focusMin = userInfo?.studyDuration || DEFAULT_FOCUS;
+
+  const MODES = useMemo(() => [
+    { label: "Focus", minutes: focusMin },
+    { label: "Short Break", minutes: Math.max(5, Math.round(focusMin / 5)) },
+    { label: "Long Break", minutes: Math.max(10, Math.round(focusMin / 3)) },
+  ], [focusMin]);
+
   const [modeIndex, setModeIndex] = useState(0);
   const [seconds, setSeconds] = useState(MODES[0].minutes * 60);
   const [running, setRunning] = useState(false);

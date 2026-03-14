@@ -1,8 +1,8 @@
-import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
+import { createContext, useContext, useState, useCallback, ReactNode } from "react";
 
 interface UserInfo {
   name: string;
-  email: string;
+  studyDuration: number; // in minutes
   avatar?: string; // URL or base64 data URI
 }
 
