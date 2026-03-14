@@ -140,8 +140,8 @@ const Profile = () => {
                 </h2>
               )}
               <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3 justify-center sm:justify-start">
-                <Mail className="w-3.5 h-3.5" />
-                {userInfo?.email || "—"}
+                <Clock className="w-3.5 h-3.5" />
+                {userInfo?.studyDuration || 25} min study sessions
               </div>
 
               {/* Badge & Level */}

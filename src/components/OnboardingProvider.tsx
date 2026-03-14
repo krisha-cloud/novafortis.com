@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect, useCallback, ReactNode 
 
 interface UserInfo {
   name: string;
-  email: string;
+  studyDuration: number; // in minutes
   avatar?: string; // URL or base64 data URI
 }
 
