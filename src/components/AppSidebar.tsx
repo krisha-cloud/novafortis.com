@@ -1,10 +1,11 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { Timer, BookOpen, Brain, Shield, Sparkles, LayoutDashboard, Zap, Palette, Check, X, Monitor, Tablet, Smartphone, Trophy, User, ListChecks } from "lucide-react";
+import { Timer, BookOpen, Brain, Shield, Sparkles, LayoutDashboard, Zap, Palette, Check, X, Monitor, Tablet, Smartphone, Trophy, User, ListChecks, LogOut } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useTheme, themes } from "./ThemeProvider";
 import { useSidebarMobile } from "./SidebarMobileProvider";
 import { useLayoutMode, type LayoutMode } from "./LayoutModeProvider";
+import { useOnboarding } from "./OnboardingProvider";
 
 const layoutModes: Array<{ id: LayoutMode; label: string; icon: typeof Monitor }> = [
   { id: "laptop", label: "Laptop", icon: Monitor },
@@ -56,6 +57,7 @@ const AppSidebar = () => {
   const { theme, setTheme } = useTheme();
   const [themesOpen, setThemesOpen] = useState(false);
   const { open, setOpen } = useSidebarMobile();
+  const { logout } = useOnboarding();
 
   const handleNavClick = () => {
     setOpen(false);
@@ -217,6 +219,19 @@ const AppSidebar = () => {
           <LayoutToggle />
         </div>
       </nav>
+
+      {/* Logout button */}
+      <div className="px-4 mb-3">
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.97 }}
+          onClick={logout}
+          className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-destructive hover:bg-destructive/10 transition-colors"
+        >
+          <LogOut className="w-4 h-4" />
+          Log Out
+        </motion.button>
+      </div>
 
       {/* Bottom card */}
       <div className="p-4 mx-4 mb-5 rounded-2xl border border-primary/10 bg-primary/5 backdrop-blur-xl">

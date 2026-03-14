@@ -11,6 +11,7 @@ interface OnboardingContextType {
   isOnboarded: boolean;
   completeOnboarding: (info: UserInfo) => void;
   updateProfile: (updates: Partial<UserInfo>) => void;
+  logout: () => void;
 }
 
 const OnboardingContext = createContext<OnboardingContextType>({
@@ -18,6 +19,7 @@ const OnboardingContext = createContext<OnboardingContextType>({
   isOnboarded: false,
   completeOnboarding: () => {},
   updateProfile: () => {},
+  logout: () => {},
 });
 
 export const useOnboarding = () => useContext(OnboardingContext);
@@ -44,8 +46,13 @@ export const OnboardingProvider = ({ children }: { children: ReactNode }) => {
     });
   }, []);
 
+  const logout = useCallback(() => {
+    setUserInfo(null);
+    localStorage.removeItem("novafortis-user");
+  }, []);
+
   return (
-    <OnboardingContext.Provider value={{ userInfo, isOnboarded, completeOnboarding, updateProfile }}>
+    <OnboardingContext.Provider value={{ userInfo, isOnboarded, completeOnboarding, updateProfile, logout }}>
       {children}
     </OnboardingContext.Provider>
   );
