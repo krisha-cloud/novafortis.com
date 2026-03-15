@@ -46,6 +46,7 @@ const navItems = [
   { to: "/quiz", icon: Brain, label: "Quiz" },
   { to: "/focus", icon: Shield, label: "Focus Mode" },
   { to: "/study-plan", icon: Sparkles, label: "AI Planner" },
+  { to: "/music", icon: Music, label: "Music & Audio" },
   { to: "/achievements", icon: Trophy, label: "Achievements" },
   { to: "/checklist", icon: ListChecks, label: "Checklist" },
   { to: "/profile", icon: User, label: "Profile" },
