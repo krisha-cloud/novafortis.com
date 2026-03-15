@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, ArrowRight, User, Clock, Sparkles, GraduationCap, Target, BookOpen, Megaphone, Laugh } from "lucide-react";
+import { Zap, ArrowRight, User, Clock, Sparkles, GraduationCap, Target, BookOpen, Megaphone } from "lucide-react";
 import { useOnboarding } from "./OnboardingProvider";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -45,16 +45,7 @@ const SUBJECT_OPTIONS = [
   "Engineering", "Medicine", "Law",
 ];
 
-const JOKES = [
-  { setup: "Why did the student eat his homework?", punchline: "Because the teacher said it was a piece of cake! 🍰" },
-  { setup: "What's a math teacher's favorite season?", punchline: "Sum-mer! ☀️" },
-  { setup: "Why don't scientists trust atoms?", punchline: "Because they make up everything! ⚛️" },
-  { setup: "Why was the math book sad?", punchline: "It had too many problems. 📖" },
-  { setup: "What do you call a sleeping dinosaur?", punchline: "A dino-snore! 🦕" },
-];
-
-// Steps: 0=welcome, 1=name, 2=heardFrom, 3=joke1, 4=userType, 5=goals, 6=joke2, 7=subjects, 8=duration
-const TOTAL_SURVEY_STEPS = 7; // excluding welcome & jokes
+const TOTAL_STEPS = 7; // 0=welcome, 1=name, 2=heardFrom, 3=userType, 4=goals, 5=subjects, 6=duration
 
 const StepIndicator = ({ current, total }: { current: number; total: number }) => (
   <div className="flex justify-center gap-1.5 mt-8">
@@ -102,10 +93,6 @@ const OnboardingScreen = () => {
   const [subjects, setSubjects] = useState<string[]>([]);
   const [selectedDuration, setSelectedDuration] = useState<number | null>(null);
   const [exiting, setExiting] = useState(false);
-  const [showPunchline, setShowPunchline] = useState(false);
-
-  const joke1 = JOKES[Math.floor(name.length % JOKES.length)];
-  const joke2 = JOKES[(Math.floor(name.length % JOKES.length) + 2) % JOKES.length];
 
   const toggleGoal = (g: string) =>
     setGoals((prev) => (prev.includes(g) ? prev.filter((x) => x !== g) : [...prev, g]));
@@ -127,15 +114,10 @@ const OnboardingScreen = () => {
     }, 800);
   };
 
-  const nextStep = () => {
-    setShowPunchline(false);
-    setStep((s) => s + 1);
-  };
+  const nextStep = () => setStep((s) => s + 1);
 
-  const surveyStepIndex = (() => {
-    const map: Record<number, number> = { 1: 0, 2: 1, 4: 2, 5: 3, 7: 4, 8: 5, 9: 6 };
-    return map[step] ?? 0;
-  })();
+  // survey step index for indicator (excluding welcome step)
+  const surveyStepIndex = step > 0 ? step - 1 : 0;
 
   return (
     <AnimatePresence>
@@ -231,7 +213,7 @@ const OnboardingScreen = () => {
                     onKeyDown={(e) => e.key === "Enter" && name.trim() && nextStep()} autoFocus
                     className="bg-secondary/50 border-border/30 rounded-xl h-14 text-center text-lg font-medium mb-6 backdrop-blur-xl" />
                   <NavButton onClick={() => name.trim() && nextStep()} disabled={!name.trim()} label="Continue" />
-                  <StepIndicator current={surveyStepIndex} total={TOTAL_SURVEY_STEPS} />
+                  <StepIndicator current={surveyStepIndex} total={TOTAL_STEPS - 1} />
                 </motion.div>
               )}
 
@@ -250,17 +232,12 @@ const OnboardingScreen = () => {
                     ))}
                   </div>
                   <NavButton onClick={() => heardFrom && nextStep()} disabled={!heardFrom} label="Continue" />
-                  <StepIndicator current={surveyStepIndex} total={TOTAL_SURVEY_STEPS} />
+                  <StepIndicator current={surveyStepIndex} total={TOTAL_STEPS - 1} />
                 </motion.div>
               )}
 
-              {/* Step 3: Joke #1 */}
+              {/* Step 3: User type */}
               {step === 3 && (
-                <JokeStep joke={joke1} showPunchline={showPunchline} setShowPunchline={setShowPunchline} onNext={nextStep} />
-              )}
-
-              {/* Step 4: User type */}
-              {step === 4 && (
                 <motion.div key="usertype" initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -60 }} transition={{ duration: 0.4 }} className="text-center">
                   <StepIcon icon={GraduationCap} />
@@ -281,12 +258,12 @@ const OnboardingScreen = () => {
                     ))}
                   </div>
                   <NavButton onClick={() => userType && nextStep()} disabled={!userType} label="Continue" />
-                  <StepIndicator current={surveyStepIndex} total={TOTAL_SURVEY_STEPS} />
+                  <StepIndicator current={surveyStepIndex} total={TOTAL_STEPS - 1} />
                 </motion.div>
               )}
 
-              {/* Step 5: Goals */}
-              {step === 5 && (
+              {/* Step 4: Goals */}
+              {step === 4 && (
                 <motion.div key="goals" initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -60 }} transition={{ duration: 0.4 }} className="text-center">
                   <StepIcon icon={Target} />
@@ -307,17 +284,12 @@ const OnboardingScreen = () => {
                     ))}
                   </div>
                   <NavButton onClick={() => goals.length > 0 && nextStep()} disabled={goals.length === 0} label="Continue" />
-                  <StepIndicator current={surveyStepIndex} total={TOTAL_SURVEY_STEPS} />
+                  <StepIndicator current={surveyStepIndex} total={TOTAL_STEPS - 1} />
                 </motion.div>
               )}
 
-              {/* Step 6: Joke #2 */}
-              {step === 6 && (
-                <JokeStep joke={joke2} showPunchline={showPunchline} setShowPunchline={setShowPunchline} onNext={nextStep} />
-              )}
-
-              {/* Step 7: Subjects */}
-              {step === 7 && (
+              {/* Step 5: Subjects */}
+              {step === 5 && (
                 <motion.div key="subjects" initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -60 }} transition={{ duration: 0.4 }} className="text-center">
                   <StepIcon icon={BookOpen} />
@@ -338,12 +310,12 @@ const OnboardingScreen = () => {
                     ))}
                   </div>
                   <NavButton onClick={() => subjects.length > 0 && nextStep()} disabled={subjects.length === 0} label="Almost done!" />
-                  <StepIndicator current={surveyStepIndex} total={TOTAL_SURVEY_STEPS} />
+                  <StepIndicator current={surveyStepIndex} total={TOTAL_STEPS - 1} />
                 </motion.div>
               )}
 
-              {/* Step 8: Study Duration */}
-              {step === 8 && (
+              {/* Step 6: Study Duration */}
+              {step === 6 && (
                 <motion.div key="duration" initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -60 }} transition={{ duration: 0.4 }} className="text-center">
                   <StepIcon icon={Clock} />
@@ -371,7 +343,7 @@ const OnboardingScreen = () => {
                       Let's Go! <Sparkles className="w-4 h-4 ml-2" />
                     </Button>
                   </motion.div>
-                  <StepIndicator current={surveyStepIndex} total={TOTAL_SURVEY_STEPS} />
+                  <StepIndicator current={surveyStepIndex} total={TOTAL_STEPS - 1} />
                 </motion.div>
               )}
 
@@ -398,54 +370,6 @@ const NavButton = ({ onClick, disabled, label }: { onClick: () => void; disabled
       className="gradient-primary text-primary-foreground rounded-2xl h-12 px-8 font-semibold glow-primary w-full">
       {label} <ArrowRight className="w-4 h-4 ml-2" />
     </Button>
-  </motion.div>
-);
-
-const JokeStep = ({
-  joke,
-  showPunchline,
-  setShowPunchline,
-  onNext,
-}: {
-  joke: { setup: string; punchline: string };
-  showPunchline: boolean;
-  setShowPunchline: (v: boolean) => void;
-  onNext: () => void;
-}) => (
-  <motion.div key={`joke-${joke.setup}`} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
-    exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.4 }} className="text-center">
-    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
-      className="w-16 h-16 rounded-2xl bg-secondary/50 border border-border/30 flex items-center justify-center mx-auto mb-6">
-      <Laugh className="w-7 h-7 text-primary" />
-    </motion.div>
-    <h2 className="text-xl font-display font-bold mb-2">Quick break! 😄</h2>
-    <p className="text-muted-foreground text-sm mb-8">{joke.setup}</p>
-
-    <AnimatePresence>
-      {showPunchline && (
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-          className="text-lg font-bold text-primary mb-8">
-          {joke.punchline}
-        </motion.div>
-      )}
-    </AnimatePresence>
-
-    {!showPunchline ? (
-      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-        <Button onClick={() => setShowPunchline(true)}
-          className="rounded-2xl h-12 px-8 font-semibold bg-secondary/50 border border-border/30 text-foreground hover:bg-secondary/80 w-full">
-          Tell me! 🤣
-        </Button>
-      </motion.div>
-    ) : (
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
-        whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-        <Button onClick={onNext}
-          className="gradient-primary text-primary-foreground rounded-2xl h-12 px-8 font-semibold glow-primary w-full">
-          Continue <ArrowRight className="w-4 h-4 ml-2" />
-        </Button>
-      </motion.div>
-    )}
   </motion.div>
 );
 
