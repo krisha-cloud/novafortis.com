@@ -19,6 +19,7 @@ import StudyPlan from "./pages/StudyPlan";
 import Achievements from "./pages/Achievements";
 import Profile from "./pages/Profile";
 import Checklist from "./pages/Checklist";
+import MusicPage from "./pages/Music";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
