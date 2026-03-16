@@ -20,6 +20,7 @@ import Achievements from "./pages/Achievements";
 import Profile from "./pages/Profile";
 import Checklist from "./pages/Checklist";
 import MusicPage from "./pages/Music";
+import Friends from "./pages/Friends";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
