@@ -20,6 +20,7 @@ import Achievements from "./pages/Achievements";
 import Profile from "./pages/Profile";
 import Checklist from "./pages/Checklist";
 import MusicPage from "./pages/Music";
+import Friends from "./pages/Friends";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,6 +45,7 @@ const AppContent = () => {
           <Route path="/music" element={<MusicPage />} />
           <Route path="/achievements" element={<Achievements />} />
           <Route path="/checklist" element={<Checklist />} />
+          <Route path="/friends" element={<Friends />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="*" element={<NotFound />} />
