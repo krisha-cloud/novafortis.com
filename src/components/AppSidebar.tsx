@@ -49,6 +49,7 @@ const navItems = [
   { to: "/music", icon: Music, label: "Music & Audio" },
   { to: "/achievements", icon: Trophy, label: "Achievements" },
   { to: "/checklist", icon: ListChecks, label: "Checklist" },
+  { to: "/friends", icon: Users, label: "Friends" },
   { to: "/profile", icon: User, label: "Profile" },
 ];
 

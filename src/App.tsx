@@ -45,6 +45,7 @@ const AppContent = () => {
           <Route path="/music" element={<MusicPage />} />
           <Route path="/achievements" element={<Achievements />} />
           <Route path="/checklist" element={<Checklist />} />
+          <Route path="/friends" element={<Friends />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="*" element={<NotFound />} />
